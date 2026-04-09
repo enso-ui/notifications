@@ -1,12 +1,11 @@
 <script>
 import { debounce } from 'lodash';
-import {
-    mapState, mapGetters, mapActions,
-} from 'vuex';
 import Favico from 'favico.js';
 import eventBus from '@enso-ui/ui/src/core/services/eventBus';
 import format from '@enso-ui/ui/src/modules/plugins/date-fns/format';
 import formatDistance from '@enso-ui/ui/src/modules/plugins/date-fns/formatDistance';
+import { app } from '@enso-ui/ui/src/pinia/app';
+import { websockets } from '@enso-ui/ui/src/pinia/websockets';
 
 export default {
     name: 'Notifications',
@@ -36,9 +35,12 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('websockets', ['channels']),
-        ...mapGetters(['isWebview']),
-        ...mapState(['user']),
+        channels() {
+            return websockets().channels;
+        },
+        isWebview() {
+            return app().isWebview;
+        },
     },
 
     watch: {
@@ -57,7 +59,6 @@ export default {
     },
 
     methods: {
-        ...mapActions('websockets', ['connect']),
         addBusListeners() {
             eventBus.$on('read-notification', notification => {
                 this.unread = Math.max(--this.unread, 0);
@@ -97,6 +98,9 @@ export default {
                 this.needsUpdate = true;
                 this.fetch();
             }
+        },
+        connect() {
+            return websockets().connect(app().meta.csrfToken);
         },
         count() {
             this.http.get(this.route('core.notifications.count'))
@@ -177,7 +181,7 @@ export default {
                     this.unread = Math.max(--this.unread, 0);
                     notification.read_at = data.read_at;
 
-                    if (notification.data.path !== '#') {
+                    if (notification.data.path && notification.data.path !== '#') {
                         this.$router.push({ path: notification.data.path })
                             .catch(this.routerErrorHandler);
                     }

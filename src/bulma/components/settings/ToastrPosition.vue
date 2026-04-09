@@ -1,17 +1,17 @@
 <template>
     <div class="level is-mobile">
         <div class="level-left">
-            <div class="level-item is-marginless">
+            <div class="level-item m-0">
                 {{ i18n('Notifications') }}
             </div>
         </div>
         <div class="level-right">
-            <div class="level-item toastr-position">
+            <div class="level-item toastr-position settings-control-select">
                 <core-toastr-position>
                     <template #default="{ positions, toastrPosition, update }">
                         <dropdown>
                             <template #label>
-                                <figure class="image is-16x16 ml-1">
+                                <figure class="image is-16x16">
                                     <img :src="`/images/corners/${toastrPosition}.svg`">
                                 </figure>
                             </template>
@@ -47,12 +47,26 @@ export default {
 </script>
 
 <style lang="scss">
-    .toastr-position .dropdown .dropdown-content {
+.toastr-position {
+    .dropdown-trigger .button.input .image {
+        margin: 0;
+    }
+
+    .dropdown-trigger .button.input .image img,
+    .dropdown-content .dropdown-item .image img {
+        display: block;
+        width: 0.95rem;
+        height: 0.95rem;
+        margin: auto;
+        object-fit: contain;
+    }
+
+    .dropdown .dropdown-content {
         width: 4.6em;
-        .items {
-            figure {
-                margin: auto;
-            }
+
+        .items figure {
+            margin: auto;
         }
     }
+}
 </style>

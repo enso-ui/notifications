@@ -1,6 +1,6 @@
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import { positions } from '@enso-ui/toastr/config';
+import { preferences } from '@enso-ui/ui/src/pinia/preferences';
 
 export default {
     name: 'ToastrPosition',
@@ -12,13 +12,14 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('preferences', ['toastrPosition']),
+        toastrPosition() {
+            return preferences().toastrPosition;
+        },
     },
 
     methods: {
-        ...mapActions('preferences', ['setToastrPosition']),
         update(position) {
-            this.setToastrPosition(position);
+            preferences().setToastrPosition(position);
             this.toastr.setup(position);
         },
     },

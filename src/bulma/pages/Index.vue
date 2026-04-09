@@ -8,7 +8,7 @@
                         @click="readAll">
                         <span>{{ i18n("Mark all read") }}</span>
                         <span class="icon is-small">
-                            <fa icon="check"/>
+                            <fa :icon="faCheck"/>
                         </span>
                     </a>
                 </div>
@@ -18,7 +18,7 @@
                             @click="fetch">
                             <span>{{ i18n('Reload') }}</span>
                             <span class="icon is-small">
-                                <fa icon="sync"/>
+                                <fa :icon="faArrowsRotate"/>
                             </span>
                         </a>
                     </fade>
@@ -29,7 +29,7 @@
                         @click="destroyAll">
                         <span>{{ i18n("Clear all") }}</span>
                         <span class="icon is-small">
-                            <fa icon="trash-alt"/>
+                            <fa :icon="faTrashCan"/>
                         </span>
                     </a>
                 </div>
@@ -56,7 +56,7 @@
                         </span>
                         <span class="is-pulled-right">
                             <span class="icon is-small">
-                                <fa icon="clock"
+                                <fa :icon="faClock"
                                     size="xs"/>
                             </span>
                             {{ timeFromNow(notification.created_at) }}
@@ -78,17 +78,13 @@
 <script>
 import { Fade } from '@enso-ui/transitions';
 import debounce from 'lodash/debounce';
-import { mapState } from 'vuex';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-    faClock, faBell, faCheck, faTrashAlt, faSpinner, faSync,
+    faClock, faCheck, faTrashCan, faArrowsRotate,
 } from '@fortawesome/free-solid-svg-icons';
 import eventBus from '@enso-ui/ui/src/core/services/eventBus';
 import format from '@enso-ui/ui/src/modules/plugins/date-fns/format';
 import formatDistance from '@enso-ui/ui/src/modules/plugins/date-fns/formatDistance';
-
-library.add(faClock, faBell, faCheck, faTrashAlt, faSpinner, faSync);
 
 export default {
     name: 'Index',
@@ -103,16 +99,15 @@ export default {
     ],
 
     data: () => ({
+        faArrowsRotate,
+        faCheck,
+        faClock,
+        faTrashCan,
         paginate: 200,
         notifications: [],
         offset: 0,
         loading: false,
     }),
-
-    computed: {
-        ...mapState(['user', 'meta']),
-        ...mapState('layout', ['isTouch']),
-    },
 
     created() {
         this.fetch = debounce(this.fetch, 500);
@@ -156,8 +151,6 @@ export default {
             this.notifications.forEach(notification => {
                 notification.read_at = notification.read_at || format(new Date(), 'Y-M-D H:i:s');
             });
-
-            this.unreadCount = 0;
 
             eventBus.$emit('read-all-notifications');
         },
