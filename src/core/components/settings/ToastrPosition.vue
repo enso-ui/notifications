@@ -1,6 +1,6 @@
 <script>
 import { positions } from '@enso-ui/toastr/config';
-import { preferences } from '@enso-ui/ui/src/pinia/preferences';
+import { useStore } from '@enso-ui/ui/src/core/services/pinia';
 
 export default {
     name: 'ToastrPosition',
@@ -13,13 +13,13 @@ export default {
 
     computed: {
         toastrPosition() {
-            return preferences().toastrPosition;
+            return useStore('preferences').toastrPosition;
         },
     },
 
     methods: {
         update(position) {
-            preferences().setToastrPosition(position);
+            useStore('preferences').setToastrPosition(position);
             this.toastr.setup(position);
         },
     },
