@@ -2,9 +2,10 @@
 import { debounce } from 'lodash';
 import Favico from 'favico.js';
 import eventBus from '@enso-ui/ui/src/core/services/eventBus';
-import { useStore } from '@enso-ui/ui/src/core/services/pinia';
 import format from '@enso-ui/ui/src/modules/plugins/date-fns/format';
 import formatDistance from '@enso-ui/ui/src/modules/plugins/date-fns/formatDistance';
+import { app } from '@enso-ui/ui/src/pinia/app';
+import { websockets } from '@enso-ui/ui/src/pinia/websockets';
 
 export default {
     name: 'Notifications',
@@ -35,10 +36,10 @@ export default {
 
     computed: {
         channels() {
-            return useStore('websockets').channels;
+            return websockets().channels;
         },
         isWebview() {
-            return useStore('app').isWebview;
+            return app().isWebview;
         },
     },
 
@@ -99,7 +100,7 @@ export default {
             }
         },
         connect() {
-            return useStore('websockets').connect(useStore('app').meta.csrfToken);
+            return websockets().connect(app().meta.csrfToken);
         },
         count() {
             this.http.get(this.route('core.notifications.count'))
