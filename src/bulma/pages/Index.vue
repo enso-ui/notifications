@@ -40,7 +40,7 @@
                 <li class="animate__animated"
                     v-for="(notification, index) in notifications"
                     :key="notification.id">
-                    <div class="box has-background-light p-2 mb-1"
+                    <div class="box p-2 mb-1"
                         :class="{'is-bold': !notification.read_at}">
                         <fa :icon="notification.data.icon"
                             v-if="notification.data.icon"/>
