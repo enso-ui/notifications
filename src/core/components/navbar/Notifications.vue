@@ -38,9 +38,6 @@ export default {
         channels() {
             return websockets().channels;
         },
-        isWebview() {
-            return app().isWebview;
-        },
     },
 
     watch: {
@@ -168,8 +165,7 @@ export default {
 
                 this.toast(notification);
 
-                return this.webview(notification)
-                    || this.desktop(notification);
+                return this.desktop(notification);
             });
         },
         now() {
@@ -213,20 +209,6 @@ export default {
             const name = 'core.notifications.index';
             this.$router.push({ name })
                 .catch(this.routerErrorHandler);
-        },
-        webview({ body, title }) {
-            if (this.isWebview) {
-                // eslint-disable-next-line no-undef
-                ReactNativeWebView.postMessage(JSON.stringify({
-                    title,
-                    body,
-                    type: 'notification',
-                }));
-
-                return true;
-            }
-
-            return false;
         },
     },
 
