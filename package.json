@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/notifications",
-  "version": "3.2.7",
+  "version": "3.2.8",
   "description": "Basic notifications package",
   "main": "src/bulma/pages/Index.vue",
   "repository": {
