@@ -104,7 +104,7 @@ export default {
                 .then(({ data }) => (this.unread = data.count))
                 .catch(this.errorHandler);
         },
-        desktop({ body, title, path }) {
+        notify({ body, title, path }) {
             if (document.hidden && this.desktopNotifications) {
                 const notification = new Notification(title, { body });
 
@@ -165,7 +165,7 @@ export default {
 
                 this.toast(notification);
 
-                return this.desktop(notification);
+                return this.notify(notification);
             });
         },
         now() {
