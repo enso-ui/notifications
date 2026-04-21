@@ -1,7 +1,7 @@
 {
   "name": "@enso-ui/notifications",
   "version": "3.2.8",
-  "description": "Basic notifications package",
+  "description": "Notification center pages and navbar widgets for Enso UI",
   "main": "src/bulma/pages/Index.vue",
   "repository": {
     "type": "git",
