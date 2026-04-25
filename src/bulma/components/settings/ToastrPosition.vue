@@ -2,7 +2,9 @@
     <div class="level is-mobile">
         <div class="level-left">
             <div class="level-item m-0">
-                {{ i18n('Notifications') }}
+                <span class="menu-item-label">
+                    {{ i18n('Notifications') }}
+                </span>
             </div>
         </div>
         <div class="level-right">
