@@ -18,7 +18,8 @@
                                 </figure>
                             </template>
                             <template #items>
-                                <dropdown-item v-for="position in positions"
+                                <dropdown-item class="p-2"
+                                    v-for="position in positions"
                                     :key="position"
                                     :selected="toastrPosition === position"
                                     @select="update(position)">
@@ -50,24 +51,29 @@ export default {
 
 <style lang="scss">
 .toastr-position {
-    .dropdown-trigger .button.input .image {
-        margin: 0;
+    .dropdown-trigger .button.input {
+        position: relative;
     }
 
-    .dropdown-trigger .button.input .image img,
-    .dropdown-content .dropdown-item .image img {
-        display: block;
-        width: 0.95rem;
-        height: 0.95rem;
-        margin: auto;
-        object-fit: contain;
+    .dropdown-trigger .button.input .dropdown-indicator {
+        top: 50%;
+        margin-top: -0.6rem;
     }
 
-    .dropdown .dropdown-content {
-        width: 4.6em;
+    .dropdown-menu {
+        .dropdown-content {
+            min-width: 3.3rem;
+            width: 100%;
 
-        .items figure {
-            margin: auto;
+            .dropdown-item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            figure {
+                margin: 0;
+            }
         }
     }
 }
