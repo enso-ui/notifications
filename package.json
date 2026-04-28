@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/notifications",
-  "version": "3.2.10",
+  "version": "3.2.11",
   "description": "Notification center pages and navbar widgets for Enso UI",
   "main": "src/bulma/pages/Index.vue",
   "repository": {
@@ -21,7 +21,6 @@
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/vue-fontawesome": "3.1.3",
-    "favico.js": "^0.3.10",
     "lodash": "^4.17.20"
   },
   "peerDependencies": {

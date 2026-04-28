@@ -1,11 +1,11 @@
 <script>
 import { debounce } from 'lodash';
-import Favico from 'favico.js';
 import eventBus from '@enso-ui/ui/src/core/services/eventBus';
 import format from '@enso-ui/ui/src/modules/plugins/date-fns/format';
 import formatDistance from '@enso-ui/ui/src/modules/plugins/date-fns/formatDistance';
 import { app } from '@enso-ui/ui/src/pinia/app';
 import { websockets } from '@enso-ui/ui/src/pinia/websockets';
+import FaviconBadge from '../../services/FaviconBadge';
 
 export default {
     name: 'Notifications',
@@ -24,7 +24,7 @@ export default {
     },
 
     data: v => ({
-        favico: new Favico({ animation: v.favicoAnimation }),
+        favico: new FaviconBadge(),
         notifications: [],
         unread: 0,
         needsUpdate: true,
