@@ -1,5 +1,5 @@
 <script>
-import { debounce } from 'lodash';
+import { debounce } from 'lodash-es';
 import eventBus from '@enso-ui/ui/src/core/services/eventBus';
 import format from '@enso-ui/ui/src/modules/plugins/date-fns/format';
 import formatDistance from '@enso-ui/ui/src/modules/plugins/date-fns/formatDistance';

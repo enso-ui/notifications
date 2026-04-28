@@ -77,7 +77,7 @@
 
 <script>
 import { Fade } from '@enso-ui/transitions';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash-es';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import {
     faClock, faCheck, faTrashCan, faArrowsRotate,
