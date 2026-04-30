@@ -24,19 +24,13 @@
                                 class="navbar-item"
                                 @click="read(notification)">
                                 <p class="is-notification"
-                                    :class="{
-                                        'has-text-grey-light': notification.read_at,
-                                        'is-bold': !notification.read_at,
-                                    }">
+                                    :class="{ 'has-text-weight-bold': !notification.read_at }">
                                     <fa v-if="notification.data.icon"
                                         :icon="notification.data.icon"/>
                                     {{ notification.data.body }}
                                 </p>
                                 <p>
-                                    <small :class="{
-                                        'has-text-grey-light': notification.read_at,
-                                        'has-text-info': !notification.read_at,
-                                    }">
+                                    <small :class="{ 'has-text-info': !notification.read_at }">
                                         {{ timeFromNow(notification.created_at) }}
                                     </small>
                                 </p>
@@ -48,7 +42,7 @@
                             class="level navbar-item">
                             <div class="level-left">
                                 <div class="level-item">
-                                    <a class="button is-small is-info ml-1"
+                                    <a class="button is-small"
                                         @click="visitNotifications();$refs.navbarItem.hide()">
                                         <span>{{ i18n('See all') }}</span>
                                         <span class="icon is-small">
@@ -59,7 +53,7 @@
                             </div>
                             <div class="level-right">
                                 <div class="level-item">
-                                    <a class="button is-small is-success"
+                                    <a class="button is-small is-dark"
                                         @click="readAll">
                                         <span>{{ i18n('Mark all as read') }}</span>
                                         <span class="icon is-small">
